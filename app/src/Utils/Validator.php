@@ -8,7 +8,7 @@ class Validator {
     }
 
     public static function isUrlValid(string $url): bool {
-        $pattern = '/^(https?):\/\/[a-zA-Z0-9-]+\.[a-zA-Z0-9-]+(?:\/[^\s]*)?$/i';
+        $pattern = '/^(https?):\/\/[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)+(:\d+)?(\/.*)?$/i';
         return preg_match($pattern, $url);
     }
 }
