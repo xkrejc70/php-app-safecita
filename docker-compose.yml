@@ -5,9 +5,6 @@ services:
     build: .
     ports:
       - "8092:443"
-    #remove
-    volumes:
-      - ./app:/app
     depends_on:
       - db
     tty: true
