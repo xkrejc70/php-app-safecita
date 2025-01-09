@@ -6,11 +6,20 @@ use App\Controller\ContactController;
 use App\Repository\ContactRepository;
 use App\Service\ContactService;
 use App\Utils\Validator;
+use Dotenv\Dotenv;
 
-// Load config
-// TODO from .env
-$config = require __DIR__ . '/../config/database.php';
-$pdo = new PDO($config['dsn'], $config['username'], $config['password'], $config['options']);
+// Load .env
+$dotenv = Dotenv::createImmutable(__DIR__ . '/../');
+$dotenv->load();
+
+$config = [
+    'dsn' => $_ENV['DB_DSN'],
+    'username' => $_ENV['DB_USERNAME'],
+    'password' => $_ENV['DB_PASSWORD']
+];
+
+// PDO
+$pdo = new PDO($config['dsn'], $config['username'], $config['password']);
 
 // Basic DI
 $repository = new ContactRepository($pdo);
