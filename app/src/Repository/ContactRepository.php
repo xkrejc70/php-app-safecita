@@ -29,4 +29,9 @@ class ContactRepository {
             'website' => $contact->getWebsite(),
         ]);
     }
+
+    public function findAll(): array {
+        $stmt = $this->pdo->query("SELECT * FROM contacts");
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 }

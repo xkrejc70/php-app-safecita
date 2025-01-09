@@ -20,7 +20,7 @@ class ContactService {
             return ['error' => 'Invalid email address.'];
         }
 
-        if (!$this->validator->validateWebsite($data['website'])) {
+        if (!$this->validator->isUrlValid($data['website'])) {
             return ['error' => 'Invalid website URL.'];
         }
 
@@ -32,5 +32,9 @@ class ContactService {
         $this->repository->save($contact);
 
         return ['success' => 'Contact saved successfully!'];
+    }
+
+    public function getAllContacts(): array {
+        return $this->repository->findAll();
     }
 }

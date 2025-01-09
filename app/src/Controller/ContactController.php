@@ -49,4 +49,29 @@ class ContactController {
 
         echo $form;        
     }
+
+    public function renderContactList(): void {
+        $contacts = $this->service->getAllContacts();
+        
+        if (empty($contacts)) {
+            echo "<p>No contacts found.</p>";
+            return;
+        }
+
+        echo "<h1>Contact List</h1>";
+        echo "<table border='1'>";
+        echo "<thead><tr><th>Name</th><th>Surname</th><th>Email</th><th>Website</th></tr></thead>";
+        echo "<tbody>";
+
+        foreach ($contacts as $contact) {
+            echo "<tr>";
+            echo "<td>" . htmlspecialchars($contact['name']) . "</td>";
+            echo "<td>" . htmlspecialchars($contact['surname']) . "</td>";
+            echo "<td>" . htmlspecialchars($contact['email']) . "</td>";
+            echo "<td>" . htmlspecialchars($contact['website']) . "</td>";
+            echo "</tr>";
+        }
+
+        echo "</tbody></table>";
+    }
 }

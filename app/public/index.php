@@ -29,3 +29,5 @@ $controller = new ContactController($service);
 
 $controller->renderForm();
 
+$controller->renderContactList();
+?>
